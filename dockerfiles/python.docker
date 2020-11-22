@@ -1,0 +1,10 @@
+FROM python:3.6.12
+
+RUN apt-key adv --fetch-keys  http://developer.download.nvidia.com/compute/cuda/repos/debian10/x86_64/7fa2af80.pub
+RUN bash -c 'echo "deb http://developer.download.nvidia.com/compute/cuda/repos/debian10/x86_64 /" > /etc/apt/sources.list.d/cuda.list'
+RUN apt update
+RUN apt-get update && apt-get install -y libgl1-mesa-glx
+RUN pip install tensorflow==1.9.0 keras==2.2.0 numpy==1.18.5 cmake dlib h5py==2.10 deepface
+
+CMD ["/usr/local/bin/python /var/python/api.py"]
+# CMD ["sleep infinity"]
